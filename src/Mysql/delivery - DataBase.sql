@@ -1,6 +1,6 @@
-CREATE DATABASE frave_food;
+CREATE DATABASE delivery;
 
-USE frave_food;
+USE delivery;
 
 CREATE TABLE roles
 (
@@ -39,7 +39,7 @@ CREATE TABLE users
 	id INT PRIMARY KEY AUTO_INCREMENT,
 	users VARCHAR(50) NOT NULL,
 	email VARCHAR(100) NOT NULL,
-	passwordd VARCHAR(100) NOT NULL,
+	password VARCHAR(100) NOT NULL,
 	persona_id INT NOT NULL,
 	rol_id INT NOT NULL,
 	notification_token VARCHAR(255) NULL,

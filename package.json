@@ -7,7 +7,7 @@
     "start": "babel-node src/index.js",
     "dev": "nodemon src/index.js --exec babel-node"
   },
-  "author": "Frave Developer",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",

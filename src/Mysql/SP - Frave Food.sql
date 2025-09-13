@@ -3,14 +3,14 @@
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
 /*-----------------------------------------------------------Storage Procedure----------------------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
-USE frave_food;
+USE delivery;
 
 DELIMITER //
 CREATE PROCEDURE SP_REGISTER(IN firstName VARCHAR(50), IN lastName VARCHAR(50), IN phone VARCHAR(11), IN image VARCHAR(250), IN email VARCHAR(100), IN pass VARCHAR(100), IN rol INT, IN nToken VARCHAR(255))
 BEGIN
 	INSERT INTO Person (firstName, lastName, phone, image) VALUE (firstName, lastName, phone, image);
 	
-	INSERT INTO users (users, email, passwordd, persona_id, rol_id, notification_token) VALUE (firstName, email, pass, LAST_INSERT_ID(), rol, nToken);
+	INSERT INTO users (users, email, password, persona_id, rol_id, notification_token) VALUE (firstName, email, pass, LAST_INSERT_ID(), rol, nToken);
 END//
 
 /*---------------------------------------------------------------------------------------------------------------------------------------*/
@@ -18,7 +18,7 @@ END//
 DELIMITER //
 CREATE PROCEDURE SP_LOGIN(IN email VARCHAR(100))
 BEGIN
-	SELECT p.uid, p.firstName, p.lastName, p.image, u.email, u.passwordd, u.rol_id, u.notification_token FROM person p
+	SELECT p.uid, p.firstName, p.lastName, p.image, u.email, u.password, u.rol_id, u.notification_token FROM person p
 	INNER JOIN users u ON p.uid = u.persona_id
 	WHERE u.email = email AND p.state = TRUE;
 END//
