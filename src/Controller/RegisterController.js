@@ -6,7 +6,7 @@ import pool from '../Database/mysql';
 export const registerClient = async ( req, res = response ) => {
 
     const { firstname, lastname, phone, email, password, notification_token } = req.body;
-    const imagePath = req.file.filename;
+    const imagePath = '';
 
     try {
         

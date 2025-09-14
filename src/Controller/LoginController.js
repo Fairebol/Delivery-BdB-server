@@ -14,7 +14,7 @@ export const loginController = async ( req, res = response ) => {
         if( validatedEmail.length == 0 ){
             return res.status(400).json({
                 resp: false,
-                msg : 'Wrong Credentialsqwe'
+                msg : 'Wrong Credentials'
             });
         }
 
@@ -32,13 +32,13 @@ export const loginController = async ( req, res = response ) => {
             }); 
         }
 
-        let token = await generateJsonWebToken( user.uid );
+        let token = await generateJsonWebToken( user.id );
 
         res.json({
             resp: true,
             msg : 'Bienvenido a bien de barrio',
             user: {
-                uid: user.uid,
+                uid: user.id,
                 username: user.users,
                 email: user.email,
                 rol_id: user.rol_id,
