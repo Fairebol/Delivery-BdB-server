@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import { config } from 'dotenv';
-import cors from 'cors';
 
 import { createServer } from "http";
 import Server from "socket.io";
@@ -23,11 +22,6 @@ const httpServer = createServer(app);
 const io = new Server(httpServer);
 socketOrderDelivery(io);
 
-app.use( cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
 app.use( express.json() );
 app.use( express.urlencoded({ extended: false }));
 

@@ -3,27 +3,29 @@ import bcrypt from 'bcrypt';
 import pool from '../Database/mysql';
 import { generateJsonWebToken } from '../Lib/JwToken';
 
-
 export const loginController = async ( req, res = response ) => {
 
     try {
 
         const { email, password } = req.body;
-
+        console.log(req.body);
         const validatedEmail = await pool.query('SELECT email FROM users WHERE email = ?', [ email ]);
 
         if( validatedEmail.length == 0 ){
             return res.status(400).json({
                 resp: false,
-                msg : 'Wrong Credentials'
+                msg : 'Wrong Credentialsqwe'
             });
         }
 
-        const userdb = await pool.query(`CALL SP_LOGIN(?);`, [email]);
+        const userdb = await pool.query(`
+            SELECT id, users, email, password, rol_id, notification_token 
+            FROM users WHERE email = ?
+        `, [email]);
 
-        const user = userdb[0][0];
+        const user = userdb[0];
 
-        if( !await bcrypt.compareSync( password, user.passwordd )){
+        if( !await bcrypt.compareSync( password, user.password )){
             return res.status(401).json({
                 resp: false,
                 msg : 'Wrong Credentials'
@@ -34,12 +36,10 @@ export const loginController = async ( req, res = response ) => {
 
         res.json({
             resp: true,
-            msg : 'Welcome to Frave Restaurant',
+            msg : 'Bienvenido a bien de barrio',
             user: {
                 uid: user.uid,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                image: user.image,
+                username: user.users,
                 email: user.email,
                 rol_id: user.rol_id,
                 notification_token: user.notification_token
@@ -71,13 +71,10 @@ export const renewTokenLogin = async ( req, res = response ) => {
         
         res.json({
             resp: true,
-            msg : 'Welcome to Frave Restaurant',
+            msg : 'Bienvenido a Bien de Barrio',
             user: {
-                uid: user.uid,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                image: user.image,
-                phone: user.phone,
+                uid: user.id,
+                username: user.users,
                 email: user.email,
                 rol_id: user.rol_id,
                 notification_token: user.notification_token
