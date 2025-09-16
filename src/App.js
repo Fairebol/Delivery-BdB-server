@@ -19,14 +19,12 @@ config();
 
 const app = express();
 
-// CORS Configuration
 app.use(cors({
-    origin: '*', // En producción, especifica los dominios permitidos
+    origin: '*', 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-token']
 }));
 
-// CONFIG SOCKET 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
