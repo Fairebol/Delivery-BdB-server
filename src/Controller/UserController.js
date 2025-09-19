@@ -164,7 +164,6 @@ export const getAddressesUser = async (req, res = response ) => {
 
 }
 
-
 export const deleteStreetAddress = async (req, res = response ) => {
 
     try {
@@ -191,20 +190,34 @@ export const addStreetAddress = async ( req, res = response ) => {
 
         const { street, reference, latitude, longitude } = req.body;
 
-        await pool.query('INSERT INTO addresses (street, reference, Latitude, Longitude, persona_id) VALUE (?,?,?,?,?)', [ street, reference, latitude, longitude, req.uid ]);
+        // DEBUG: Imprime los valores recibidos en el body
+        console.log('DEBUG: Datos recibidos para añadir dirección:');
+        console.log('street:', street);
+        console.log('reference:', reference);
+        console.log('latitude:', latitude);
+        console.log('longitude:', longitude);
+        console.log('persona_id:', req.uid);
+
+        // Realiza la inserción en la base de datos
+        const result = await pool.query('INSERT INTO addresses (street, reference, Latitude, Longitude, persona_id) VALUE (?,?,?,?,?)', [ street, reference, latitude, longitude, req.uid]);
         
+        // DEBUG: Muestra el resultado de la consulta SQL
+        console.log('DEBUG: Resultado de la inserción en la base de datos:', result);
+
         res.json({
             resp: true,
-            msg : 'Street Address added successfully'
+            msg : 'Dirección añadida'
         });
 
     } catch (e) {
+        // DEBUG: Imprime el error completo si algo sale mal
+        console.error('DEBUG: Error en la función addStreetAddress:', e);
+
         return res.status(500).json({
             resp: false,
             msg : e
         });
     }
-
 }
 
 
