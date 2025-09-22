@@ -12,7 +12,7 @@ CREATE TABLE roles
 
 INSERT INTO roles (rol, description) VALUES ('Admin', 'Admin'), ('Client', 'Client'), ('Delivery', 'Delivery');
 
-CREATE TABLE Person
+CREATE TABLE person
 (
 	uid INT PRIMARY KEY AUTO_INCREMENT,
 	firstName VARCHAR(50) NULL,

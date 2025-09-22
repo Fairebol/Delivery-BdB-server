@@ -11,7 +11,7 @@ export const addCategories = async (req, res = response) => {
 
         res.json({
             resp: true,
-            msg : 'Category added successfully',
+            msg : 'Categoria añadida',
         });
         
     } catch (e) {
@@ -30,7 +30,7 @@ export const getAllCategories = async ( req, res = response ) => {
 
         res.json({
             resp: true,
-            msg : 'All Categories',
+            msg : 'Todas las categorias',
             categories: category
         });
         
