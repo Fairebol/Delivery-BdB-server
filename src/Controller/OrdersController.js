@@ -1,5 +1,5 @@
 import { response } from 'express';
-import pool from '../Database/mysql';
+import pool from '../Database/mysql2';
 import { Preference } from 'mercadopago';
 import client from '../config/mercadopago';
 

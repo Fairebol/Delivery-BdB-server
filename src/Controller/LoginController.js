@@ -1,6 +1,6 @@
 import { response } from 'express';
 import bcrypt from 'bcrypt';
-import pool from '../Database/mysql';
+import pool from '../Database/mysql2';
 import { generateJsonWebToken } from '../Lib/JwToken';
 
 export const loginController = async ( req, res = response ) => {

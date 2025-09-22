@@ -1,5 +1,5 @@
 import { response } from 'express';
-import pool from '../Database/mysql';
+import pool from '../Database/mysql2';
 
 
 export const getListOrdersForClient = async (req, res = response) => {
